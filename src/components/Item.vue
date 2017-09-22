@@ -1,12 +1,14 @@
 <template>
-    <li>
-        <input class="check" type="checkbox"/>
+    <li class="teste">
+        <!--<input class="check" type="checkbox"/>-->
+        <!--{{model.isEnabled}}-->
+        <input type="checkbox" :value="model.name" v-model="model.isEnabled" @click="checkAll"></input>
         <div :class="{bold: isFolder}" @click="toggle" @dblclick="changeType"> {{model.name}}
             <span class="btn" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
         </div>
-        <ul class="teste" v-show="open" v-if="isFolder">
+        <ul v-show="open" v-if="isFolder">
             <item class="item" v-for="model in model.children" :model="model"></item>
-            <li class="add" @click="addChild">+</li>
+            
         </ul>
     </li>
 </template>
@@ -18,6 +20,7 @@
     
         data() { 
             return {
+                //isEnabled: false,
                 open: false
             }
         },
@@ -47,62 +50,79 @@
                 /*console.log(this.$set, this.model, "teste");
                 if (!this.model.children) {
                     this.model.children = []
-                }*/                   
+                }   */              
                 this.model.children.push({
                     name: 'Teste Elara'
                 })
 
                 this.$set(this.model, "children", this.model.children)
                 // this.$forceUpdate()
-            }
-        },
+            },
+
+            checkAll: function () {
+                let checked = this.model.isEnabled;
+                let teste = (current, checked) => {
+                debugger;
+
+                    this.$set(current, 'isEnabled', checked);
+                    if (current.children) {
+                        current.children.forEach(children => {
+                            teste(children, checked);
+                        });
+                    }
+                }
+                teste(this.model, checked);
+            }  
+        }
     }
 </script>
 
 <style>
 
-.item {
-    padding-left: 22px;
-    cursor: pointer;
+li input {
+    position: absolute;
+    left: 0;
+    margin-left: 0;
+    height: 1em;
+    width: 1em;
+}
+
+.teste {
+    width: 300px;
+    padding-left: 30px;
     position: relative;
     display: block;
     padding: 10px 15px;
     margin-bottom: 1px;
     background-color: white;
-    border: 1px solid;
 }
 
-.bold {
-    font-weight: bold;
-}
+/*.item {
+    width: 300px;
+    padding-left: 30px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 1px;
+    background-color: white;
+
+}*/
 
 .btn {
-    position: absolute;
+    position: inherit;
     left: 2px;
     top: 6px;
     background-color: transparent;
     color: #d8c12f;
-    
-    font-weight: normal;
     text-align: center;
     vertical-align: middle;    
 }
 
 
-/*li ::before {
-    content: '>';
-    border-left: 1px solid #999;
-    bottom: 50px;
-    height: 100%;
-    top: -16px;
-    width: 1px;
-} */
-
-ul {
+/*ul {
     padding
     padding-left: 1em;
     line-height: 1.5em;
     list-style-type: dot;
-}
-
+}*/
 </style>
