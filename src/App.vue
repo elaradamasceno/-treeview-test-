@@ -19,15 +19,15 @@ export default {
   data () {
     return {
 			treeData: {
-				name : 'Bebidas',
+				name : 'Filmes',
 				children : [
-					{name : 'Cerveja'},
-					{name : 'Tequila'},
+					{name : 'Ação'},
+					{name : 'Terror'},
           {
-            name : 'Teste A',
+            name : 'Suspense',
             children :  [
-              {name : 'Filho A'},
-              {name :  'Filho AA'}
+              {name : 'Suspense A'},
+              {name :  'Suspense B'}
             ]
           }
 				]
