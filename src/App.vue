@@ -3,8 +3,7 @@
     <ul id="demo">
       <Item class="item" :model="treeData"></Item>
     </ul>
-    <!--<button>Selecionar Todos</button>-->
-      <button v-on:click="selectAll">Cumprimentar</button>
+    <!--<button v-on:click="checkAll">Selecionar</button>-->
   </div>
 </template>
 
@@ -34,16 +33,7 @@ export default {
 				]
 			}
 		}
-  },
-    methods: {
-      greet: function (event) {
-        alert('Olá !')
-      
-        if (event) {
-          alert(event.target.tagName)
-        }
-      }
-    }
+  }
 }
 </script>
 

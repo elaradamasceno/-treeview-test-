@@ -1,14 +1,12 @@
 <template>
     <li class="teste">
-        <!--<input class="check" type="checkbox"/>-->
         <!--{{model.isEnabled}}-->
         <input type="checkbox" :value="model.name" v-model="model.isEnabled" @click="checkAll"></input>
         <div :class="{bold: isFolder}" @click="toggle" @dblclick="changeType"> {{model.name}}
             <span class="btn" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
         </div>
         <ul v-show="open" v-if="isFolder">
-            <item class="item" v-for="model in model.children" :model="model"></item>
-            
+            <item class="item" v-for="model in model.children" :model="model"></item>   
         </ul>
     </li>
 </template>
@@ -63,7 +61,6 @@
                 let checked = this.model.isEnabled;
                 let teste = (current, checked) => {
                 debugger;
-
                     this.$set(current, 'isEnabled', checked);
                     if (current.children) {
                         current.children.forEach(children => {
@@ -72,7 +69,7 @@
                     }
                 }
                 teste(this.model, checked);
-            }  
+            }
         }
     }
 </script>
@@ -97,17 +94,6 @@ li input {
     background-color: white;
 }
 
-/*.item {
-    width: 300px;
-    padding-left: 30px;
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-    margin-bottom: 1px;
-    background-color: white;
-
-}*/
-
 .btn {
     position: inherit;
     left: 2px;
@@ -117,12 +103,4 @@ li input {
     text-align: center;
     vertical-align: middle;    
 }
-
-
-/*ul {
-    padding
-    padding-left: 1em;
-    line-height: 1.5em;
-    list-style-type: dot;
-}*/
 </style>
