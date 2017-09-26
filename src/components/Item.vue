@@ -6,7 +6,8 @@
             <span class="btn" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
         </div>
         <ul v-show="open" v-if="isFolder">
-            <item class="item" v-for="model in model.children" :model="model"></item>   
+            <item class="item" v-for="model in model.children" :model="model"></item> 
+            <li class="add" @click="addChild">Adicionar</li>  
         </ul>
     </li>
 </template>
@@ -18,7 +19,7 @@
     
         data() { 
             return {
-                //isEnabled: false,
+                isEnabled: false,
                 open: false
             }
         },
@@ -45,10 +46,11 @@
             },
 
             addChild: function() {
-                /*console.log(this.$set, this.model, "teste");
+               /* console.log(this.$set, this.model, "teste");
                 if (!this.model.children) {
                     this.model.children = []
-                }   */              
+                }*/
+
                 this.model.children.push({
                     name: 'Teste Elara'
                 })
@@ -92,6 +94,10 @@ li input {
     padding: 10px 15px;
     margin-bottom: 1px;
     background-color: white;
+}
+
+.add{
+    border: 1px solid;
 }
 
 .btn {
